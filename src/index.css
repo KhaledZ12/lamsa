@@ -1,0 +1,847 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Logo Blue - Primary */
+    --primary: 213 70% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 213 60% 55%;
+
+    /* Logo Gold - Secondary/Accent */
+    --gold: 43 60% 55%;
+    --gold-dark: 43 65% 45%;
+    --gold-light: 43 55% 65%;
+
+    --secondary: 43 60% 55%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 213 70% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 213 70% 40%;
+
+    --radius: 0.75rem;
+
+    /* Premium gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(213, 70%, 40%), hsl(213, 60%, 55%));
+    --gradient-gold: linear-gradient(135deg, hsl(43, 65%, 45%), hsl(43, 55%, 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(213, 70%, 40%) 0%, hsl(213, 60%, 50%) 50%, hsl(43, 60%, 55%) 100%);
+
+    /* Shadows */
+    --shadow-elegant: 0 10px 40px -10px hsl(213 70% 40% / 0.3);
+    --shadow-gold: 0 10px 30px -10px hsl(43 60% 55% / 0.4);
+
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 213 70% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 213 50% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 213 50% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 213 60% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --gold: 43 60% 60%;
+    --gold-dark: 43 65% 50%;
+
+    --secondary: 43 60% 60%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 213 40% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 213 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 213 40% 20%;
+    --input: 213 40% 20%;
+    --ring: 213 60% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-cairo;
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" auto;
+    line-height: 1.6;
+  }
+
+  /* RTL Support */
+  html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Typography Hierarchy */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-foreground;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.1em;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold text-foreground;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    padding-bottom: 0.1em;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-bold text-foreground;
+    line-height: 1.4;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold text-foreground;
+    line-height: 1.5;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl font-semibold text-foreground;
+    line-height: 1.5;
+  }
+
+  h6 {
+    @apply text-base md:text-lg font-semibold text-foreground;
+    line-height: 1.5;
+  }
+
+  p {
+    @apply text-base text-muted-foreground;
+    line-height: 1.7;
+  }
+
+  /* Ensure proper contrast in all themes */
+  .text-foreground {
+    color: hsl(var(--foreground));
+  }
+
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* RTL Typography adjustments */
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3,
+  html[dir="rtl"] h4,
+  html[dir="rtl"] h5,
+  html[dir="rtl"] h6 {
+    text-align: right;
+  }
+
+  html[dir="rtl"] p {
+    text-align: right;
+  }
+}
+
+@layer utilities {
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .hover-gold:hover {
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* Blog post content styles */
+.rtl-content h2 {
+  @apply text-2xl font-bold text-foreground mb-4 mt-8;
+}
+
+.rtl-content h3 {
+  @apply text-xl font-bold text-foreground mb-3 mt-6;
+}
+
+.rtl-content p {
+  @apply text-muted-foreground leading-relaxed mb-4;
+}
+
+.rtl-content ul {
+  @apply list-disc list-inside space-y-2 mb-6 text-muted-foreground;
+}
+
+.rtl-content ul li {
+  @apply mr-4;
+}
+
+.rtl-content strong {
+  @apply text-foreground font-semibold;
+}
+
+/* Local Fonts - @font-face declarations */
+@font-face {
+  font-family: 'Amiri';
+  src: url('./assets/fonts/amiri/Amiri-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('./assets/fonts/amiri/Amiri-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('./assets/fonts/amiri/Amiri-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('./assets/fonts/amiri/Amiri-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/Cairo/static/Cairo-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('./assets/fonts/Noto_Kufi_Arabic/static/NotoKufiArabic-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Local Fonts - CSS Classes */
+/* Amiri Font Classes */
+.amiri-regular {
+  font-family: "Amiri", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.amiri-bold {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.amiri-regular-italic {
+  font-family: "Amiri", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.amiri-bold-italic {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Cairo Font Classes */
+.cairo-thin {
+  font-family: "Cairo", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.cairo-extralight {
+  font-family: "Cairo", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.cairo-light {
+  font-family: "Cairo", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.cairo-regular {
+  font-family: "Cairo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cairo-medium {
+  font-family: "Cairo", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.cairo-semibold {
+  font-family: "Cairo", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.cairo-bold {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.cairo-extrabold {
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.cairo-black {
+  font-family: "Cairo", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Noto Kufi Arabic Font Classes */
+.noto-kufi-arabic-thin {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-extralight {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-light {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-regular {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-medium {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-semibold {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-bold {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-extrabold {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.noto-kufi-arabic-black {
+  font-family: "Noto Kufi Arabic", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* IBM Plex Sans Arabic Font Declarations */
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Readex Pro Font Declaration */
+@font-face {
+  font-family: 'Readex Pro';
+  src: url('./assets/fonts/Readex_Pro/ReadexPro-VariableFont_HEXP,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rubik Font Declaration */
+@font-face {
+  font-family: 'Rubik';
+  src: url('./assets/fonts/Rubik/Rubik-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('./assets/fonts/Rubik/Rubik-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Vazirmatn Font Declaration */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('./assets/fonts/Vazirmatn/Vazirmatn-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: oblique;
+  font-display: swap;
+}
+
+/* IBM Plex Sans Arabic Font Classes */
+.ibm-plex-arabic-thin {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.ibm-plex-arabic-extralight {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.ibm-plex-arabic-light {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ibm-plex-arabic-regular {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ibm-plex-arabic-medium {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ibm-plex-arabic-semibold {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.ibm-plex-arabic-bold {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Readex Pro Font Classes */
+.readex-pro-light {
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.readex-pro-regular {
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.readex-pro-medium {
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.readex-pro-semibold {
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.readex-pro-bold {
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Rubik Font Classes */
+.rubik-light {
+  font-family: "Rubik", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.rubik-regular {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rubik-medium {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.rubik-semibold {
+  font-family: "Rubik", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.rubik-bold {
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.rubik-regular-italic {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.rubik-bold-italic {
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Vazirmatn Font Classes */
+.vazirmatn-thin {
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.vazirmatn-light {
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.vazirmatn-regular {
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.vazirmatn-medium {
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.vazirmatn-semibold {
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.vazirmatn-bold {
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.vazirmatn-black {
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.fix-mobile {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: opacity, transform;
+}

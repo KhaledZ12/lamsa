@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api
+Disallow: /api/*
+Disallow: /*?*
+Disallow: /*? 
+Disallow: /*?ref=*
+Disallow: /*?utm_*
+
+# Sitemap location
+Sitemap: https://ads-lamsa.com/sitemap.xml
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 10
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 10
+
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 10
+
+User-agent: facebookexternalhit
+Allow: /
+Allow: /
+
+User-agent: *
+Allow: /
