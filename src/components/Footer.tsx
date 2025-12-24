@@ -116,7 +116,7 @@ export const Footer = () => {
           <span>جميع الحقوق محفوظة لـ مكتب لمسة © 2025 </span>
               <span >By {'    '}
               <a
-                href="https://pixeleg.com/"
+                href="https://pixelmarketng.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold"
